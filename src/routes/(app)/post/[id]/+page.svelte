@@ -2,7 +2,7 @@
     import Layout from "$lib/components/Layout.svelte"
     import Video from "$lib/components/Video.svelte"
     import Ad from "$lib/components/Ad.svelte"
-    import { FacebookLink } from "svelte-social-links"
+    //import { FacebookLink } from "svelte-social-links"
     let { data } = $props()
     let post = $state(data.post)
     const Categories = {
@@ -57,10 +57,7 @@
         </div>
         <div class='post-bottom'>
             <div class="social-media">
-                <FacebookLink
-	                url={`https://khmerweb-news.netlify.app/post/${post.id}`}
-	                hashtag=""
-                />
+                
                 <span class="fb-share-button" data-href={`https://khmerweb-news.netlify.app/post/${post.id}`} data-layout="" data-size=""><a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://khmerweb-news.netlify.app/post/${post.id}%2F&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">Share</a></span>
             </div>
             {#if data.user}
