@@ -5,9 +5,9 @@ import prismaRandom from 'prisma-extension-random'
 
 const libsql = createClient({
   authToken: `${process.env.TURSO_AUTH_TOKEN}`,
-  //url: `${process.env.TURSO_DATABASE_URL}`,
-  url: `file:./src/lib/db/dev.db`,
-  syncUrl: `${process.env.TURSO_DATABASE_URL}`,
+  url: `${process.env.TURSO_DATABASE_URL}`,
+  //url: `file:./src/lib/db/dev.db`,
+  //syncUrl: `${process.env.TURSO_DATABASE_URL}`,
 })
 //await libsql.sync()
 
