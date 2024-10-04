@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "production") {
   const libsql = createClient({
     authToken: `${process.env.TURSO_AUTH_TOKEN}`,
     //url: `${process.env.TURSO_DATABASE_URL}`,
-    url: `file:./client/db/dev.db`,
+    url: `file:./db/dev.db`,
     syncUrl: `${process.env.TURSO_DATABASE_URL}`,
   })
   const adapter = new PrismaLibSQL(libsql)
