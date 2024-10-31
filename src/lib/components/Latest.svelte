@@ -1,269 +1,131 @@
 <script>
-    import jq from 'jquery'
-    let { data, player, initialVideoId = 'cdwal5Kw3Fc' } = $props()
-
-    function parseVideos(posts){
-        let videos = []
-        for(let post of posts){
-            videos.push(JSON.parse(post.videos))
-        }
-        return videos
+    let { data } = $props()
+    const featured = data.posts.slice(0, 3)
+    const posts = data.posts.slice(3)
+    function navigate(event){
+        document.location=event.target.value
     }
-
-    let latestVideos = parseVideos(data.latestPosts)
-    let latestKhmerMovies = parseVideos(data.postsByCategory[0])
-    let latestThaiMovies = parseVideos(data.postsByCategory[1])
-    let latestChineseMovies = parseVideos(data.postsByCategory[2])
-    let latestKoreanMovies = parseVideos(data.postsByCategory[3])
-    let latestTravelVideos = parseVideos(data.postsByCategory[4])
-
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1))
-            [array[i], array[j]] = [array[j], array[i]]
-        }
-    }
-
-    function loadVideo(playlist){
-        if(playlist[0][0].type === "YouTubePlaylist"){
-           player.loadPlaylist({list:playlist[0][0].id,listType:'playlist',index:0})
-        }else{
-            player.loadVideoById(playlist[0][0].id)
-        }
-    }
-
-    function onPlayerReady(event) {
-        player.part = 0
-        player.playlist = latestVideos 
-        loadVideo(latestVideos )
-    }
-
-    function onPlayerStateChange(event) {       
-        if(event.data === YT.PlayerState.ENDED){
-            player.part += 1
-            if(player.part === player.playlist.length){
-                player.part = 0
-            }
-
-            if(player.playlist[player.part][0].type === "YouTubePlaylist"){
-                player.loadVideoById(initialVideoId)
-                player.loadPlaylist({list:player.playlist[player.part][0].id,listType:'playlist',index:0})
-            }else{
-                player.loadVideoById(player.playlist[player.part][0].id)
-            }
-        }
-    }
-
-    function onPlayerError(event){
-        player.part += 1
-        if(player.part === player.playlist.length){
-            player.part = 0
-        }
-
-        if(player.playlist[player.part][0].type === "YouTubePlaylist"){
-            player.loadVideoById(initialVideoId)
-            player.loadPlaylist({list:player.playlist[player.part][0].id,listType:'playlist',index:0})
-        }else{
-            player.loadVideoById(player.playlist[player.part][0].id)
-        }
-    }
-
-    function changeCategory(playlist, label) {
-        player.part = 0
-        player.playlist = playlist
-        if(playlist[player.part][0].type === "YouTubePlaylist"){
-            player.loadVideoById(initialVideoId)
-            player.loadPlaylist({list:playlist[0][0].id,listType:'playlist',index:0})
-            jq('.latest-video').html(label)
-        }else{
-            player.loadVideoById(playlist[0][0].id)
-            jq('.latest-video').html(label)
-        }
-    }
-
-    const ytPlayerId = 'youtube-player'
-    
-    $effect(()=>{
-        /*
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        */
-
-        function load() {
-            player = new YT.Player(ytPlayerId, {
-                height: '390',
-                width: '640',
-                videoId: initialVideoId,
-                playerVars: {
-                    'playsinline': 1,
-                    "enablejsapi": 1,
-                    "mute": 1,
-                    "autoplay": 1,
-                    "rel": 0,
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange,
-                    'onError': onPlayerError
-                }
-            })
-        }
-
-        window.YT.ready(function() {
-            if (window.YT) {
-                load();
-            } else {
-                window.onYouTubeIframeAPIReady = load;
-            }
-        })
-    })
 </script>
 
-<svelte:head>
-    <script src="https://www.youtube.com/iframe_api"></script>
-</svelte:head>
-
-<section class="main region">
-
-    <div class="feature-post">
-        <div class="random-video">
-            <span>
-                <img alt='' on:click={()=>changeCategory(latestKhmerMovies, '​ភាពយន្ត​ខ្មែរ​ចុង​ក្រោយ')} src={data.postsByCategory[0][0].thumb} />
-                <p class="news-label">ភាពយន្ត​​ខ្មែរ</p>
-            </span>
-            <span>
-                <img alt='' on:click={()=>changeCategory(latestThaiMovies, 'ភាពយន្តថៃ​​ចុង​ក្រោយ')} src={data.postsByCategory[1][0].thumb} />
-                <p class="movies-label">ភាពយន្ត​ថៃ</p>
-            </span>
-            <span>
-                <img alt='' on:click={()=>changeCategory(latestTravelVideos, 'ភាពយន្ត​បរទេសចុង​ក្រោយ')} src={data.postsByCategory[4][0].thumb} />
-                <p class="movies-label world-movie">ភាពយន្ត​បរទេស</p>
-            </span>
-            <span>
-                <img alt='' on:click={()=>changeCategory(latestKoreanMovies, 'ភាពយន្តកូរ៉េ​​ចុង​ក្រោយ')} src={data.postsByCategory[3][0].thumb} />
-                <p class="movies-label">ភាពយន្ត​​កូរ៉េ</p>
-            </span>
-            <span>
-                <img alt='' on:click={()=>changeCategory(latestChineseMovies, 'ភាពយន្តចិន​​ចុង​ក្រោយ')} src={data.postsByCategory[2][0].thumb} />
-                <p class="movies-label">ភាពយន្ត​​ចិន</p>
-            </span>
-            <div class="wrapper">
-                <div id={ytPlayerId}></div>
-                <div class="latest-video">វីដេអូ​ចុង​ក្រោយ</div>
-                <div class="channel-logo">
-                    <img src="/images/siteLogo.png" alt=''/>
+<section class="latest">
+    <div class="panel">
+        {#each featured as post}
+            <a href={`/post/${post.id}`}>
+                <img src={post.thumb} alt='' />
+                {#if post.videos.length>0 }
+                <img class="play-icon" src="/images/play.png" alt='' />
+                {/if}
+                <div class="title">{post.title}</div>
+            </a>
+        {/each}
+    </div>
+    <div class="posts">
+        {#each posts as post}
+            <div class="post">
+                <a class="thumb" href={`/post/${post.id}`}>
+                    <img src={post.thumb} alt='' />
+                    {#if post.videos.length>0 }
+                    <img class="play-icon" src="/images/play.png"alt=''/>
+                    {/if}
+                </a>
+                <div class="title-date">
+                    <a href={`/post/${post.id}`} class="title">{post.title}</a>
+                    <div>{(new Date(post.date)).toLocaleDateString("it-IT")}</div>
                 </div>
             </div>
-            <div class="play-all">
-                <a on:click={()=>changeCategory(latestVideos, 'វីដេអូ​ចុងក្រោយ')}>លេង​វីដេអូ​ចុង​ក្រោយ</a>
-            </div>
-        </div>
+        {/each}
     </div>
-    <div class="ad">
-        <img src="/images/ad.jpg" alt='' />
-        <img src="/images/ad.jpg" alt='' />
+    {#if data.pageNumber>1 }
+    <div class="pagination">
+        <span>​​​​​​​​​​​​​​​​​​​​​ទំព័រ</span> 
+        <select onchange={navigate}> 
+        {#each [...Array(data.pageNumber).keys()] as page}
+            {#if page+1 == parseInt(data.navPage) }
+                <option selected>{page+1}</option>
+            {:else}
+                <option>{page+1}</option>
+            {/if}            
+        {/each}	
+        </select> 
+        <span>នៃ {data.pageNumber}</span>
     </div>
+    {/if}
 </section>
+
 <style>
-.feature-post span img{
-    width: 100%;
-    float: left;
-}
-.random-video{
+.latest .panel{
     display: grid;
-    grid-template-columns: calc(33.33% - 6.66px) calc(33.33% - 6.66px) calc(33.33% - 6.66px);
+    grid-template-columns: repeat(3, auto);
     grid-gap: 10px;
-    padding: 10px 0;
+    padding-top: 0;
 }
-.random-video .wrapper{
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
+.latest .panel > a, .latest .posts > .post .thumb{
     position: relative;
-    padding-top: 53.4%;
-}
-.random-video span{
-    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
     width: 100%;
-    height: 100%;
-    padding-top: 53.4%;
 }
-.random-video span:hover{
-    cursor: pointer;
-}
-.random-video span img{
+.latest .panel > a img, .latest .posts > .post .thumb img{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
-.random-video span p{
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: var(--background-dark);
-    color: white;
-    text-align: center;
-    padding: 5px;
-    width: 90px;
-}
-.random-video span .world-movie{
+.latest .panel > a .play-icon, .latest .posts > .post .thumb .play-icon{
     width: auto;
+    min-height: auto;
+    width: 15%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
-.random-video .latest-video{
+.latest .panel > a .title{
     position: absolute;
-    top: 5px;
-    left: 10px;
-    color: orange;
-}
-.random-video .channel-logo img{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 6%;
-}
-.random-video .play-all{
-    position: relative;
-    bottom: 10px;
-    text-align: center;
-    visibility: hidden;
-}
-.random-video .play-all a{
-    color: orange;
-}
-.random-video .play-all:hover{
-    cursor: pointer;
-}
-.random-video .wrapper:hover .play-all{
-    visibility: visible;
-}
-.random-video .wrapper #youtube-player{
-    position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 0;
+    padding: 5px 10px;
+    font: 16px/1.5 Oswald, Bayon;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    background: -webkit-linear-gradient(bottom, black,transparent);
     width: 100%;
-    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.feature-post .ad{
+.latest .posts{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, calc(100% / 2 - 5px));
     grid-gap: 10px;
+    padding: 10px 0 0;
 }
-.feature-post .ad img{
-    width: 100%;
+.latest .posts > .post{
+    background:  #dbf188;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.latest .posts > .post .title-date{
+    padding: 5px;
+}
+.latest .posts > .post .title-date .title{
+    color: black;
+}
+.latest .pagination{
+    text-align: center;
+    padding: 20px;
+}
+.latest .pagination > span{
+    padding: 0 5px;
 }
 
 @media only screen and (max-width: 600px){
-    .random-video{
+    .latest .panel{
         grid-template-columns: 100%;
-        padding: 15px;
-    }
-    .random-video .wrapper{
-        grid-column: 1 / span 1;
-        grid-row: 1 / span 1;
-    }
+        padding: 10px 10px 0;
+    }   
+    .latest .posts{
+        grid-template-columns: 100%;
+        padding: 30px 10px 0;
+    } 
 }
-    
 </style>

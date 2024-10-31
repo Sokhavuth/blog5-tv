@@ -43,7 +43,7 @@
         width: 60px;
     }
     .wrapper .logo a{
-        font: 40px/1.5 StardosStencul, Moul;
+        font: 40px/1.5 StardosStencul, Limonf3;
         color: white;
     }
     .wrapper .search{

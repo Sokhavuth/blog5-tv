@@ -14,13 +14,16 @@ let contact = ''
 let about = ''
 let game = ''
 
-console.log(movie)
 if(data.pageURL === '/'){
     home = 'active'
-}else if(data.pageURL === 'national'){
-  national = 'active'
-}else if(data.pageURL === 'world'){
-  world = 'active'
+}else if(data.pageURL === 'news'){
+    news = 'active'
+}else if(data.pageURL === 'opinion'){
+  opinion = 'active'
+}else if(data.pageURL === 'doc'){
+    doc = 'active'
+}else if(data.pageURL === 'sport'){
+    sport = 'active'
 }else if(data.pageURL === 'movie'){
     movie = 'active'
 }else if(data.pageURL === 'trvel'){
@@ -52,7 +55,7 @@ function myFunction() {
                   </button>
                   <div class="dropdown-content">
                     <a href="/national/1">ក្នុង​ប្រទេស</a>
-                    <a href="/global/1">ក្រៅ​ប្រទេស</a>
+                    <a href="/news/1">ក្រៅ​ប្រទេស</a>
                   </div>
                 </div>
                 <a href="/opinion/1" class={`opinion ${opinion}`}>មតិ​យោបល់</a>
@@ -67,8 +70,8 @@ function myFunction() {
                     <a href="/Thai/1">រឿង​ថៃ</a>
                     <a href="/Chinese/1">រឿង​ចិន</a>
                     <a href="/Korean/1">រឿង​កូរ៉េ</a>
-                    <a href="/other/1">​រឿង​បរទេស</a>
-                    <a href="/random-movie/1">​ឥត​ព្រៀង​ទុក</a>
+                    <a href="/world/1">​រឿង​បរទេស</a>
+                    <a href="/movie/1">​ឥត​ព្រៀង​ទុក</a>
                   </div>
                 </div>
                 <a href="/travel/1" class={`travel ${travel}`}>ដើរ​លេង</a>

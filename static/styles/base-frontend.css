@@ -1,18 +1,18 @@
 /* public/styles/base.css */
 
 :root{
-    --background-dark: #5f0f40;
-    --background: #9a031e;
-    --background-light: #fb8b24;
-    --body: #fef9f4;
+    --background-dark: #2d4800;
+    --background: #528501;
+    --background-light: #a9d11c;
+    --body: #e0a1c0;
     --body-font: 14px/1.5 Vidaloka, OdorMeanChey;
-    --link: #e36414;
-    --menu: #9a031e;
-    --playlist-part:rgb(182, 180, 180);
+    --link: orange;
+    --menu: #528501;
+    --playlist-part:lightgrey;
     --playlist-color: black;
     --playlist-clicked: white;
-    --playlist-clicked-bg: #0f4c5c;
-    --color: grey;
+    --playlist-clicked-bg: #149165;
+    --color: #2d4800;
 }
   
 *{
@@ -38,5 +38,5 @@ a:hover{
 html{
     color: var(--color);
     font: var(--body-font);
-    background: var(--body);
+    background: var(--background-light);
 }

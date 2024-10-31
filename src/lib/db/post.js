@@ -99,8 +99,16 @@ class Post{
     }
 
     async paginatePostsByCategory(req, amount){
+        let query
+        if(req.params.category === "news"){
+            query = {AND: [{ categories: { contains: "news" } }, {NOT: {categories: { contains: "national" }}},
+                        {NOT: {categories: { contains: "doc" }}}
+        ]}
+        }else{
+            query = { categories: { contains: req.params.category }}
+        }
         const posts = await req.prisma.post.findMany({ 
-            where: { categories: { contains: req.params.category } },
+            where: query,
             orderBy: [{ date: "desc" }],
             skip: amount * (parseInt(req.params.page)-1),
             take: amount,

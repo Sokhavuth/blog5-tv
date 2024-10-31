@@ -90,9 +90,10 @@
     display: grid;
     grid-template-columns: 70% auto;
     grid-gap: 15px;
+    padding-bottom: 30px;
 }
 .Post .main{
-    background-color: rgb(231, 229, 229);
+    background-color: #e2f3a6;
     color: rgb(22, 22, 22);
     padding: 15px;
 }
@@ -108,6 +109,7 @@
 }
 .Post .main .content{
     margin: 20px 0;
+    font: 14px/1.5 Courgette, Nokora;
 }
 :global(.Post .main .content img){
     width: 100%;

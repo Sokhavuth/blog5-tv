@@ -8,7 +8,7 @@ async function setup(req){
 
     if(setting){
         settings = {
-            title: setting.title,
+            siteTitle: setting.title,
             description: setting.description,
             dashboard: setting.dashboard,
             frontend: setting.frontend,
@@ -18,7 +18,7 @@ async function setup(req){
         }
     }else{
         settings = {
-            title: 'ដំណឹង​ល្អ',
+            siteTitle: 'ដំណឹង​ល្អ',
             description: 'description',
             dashboard: 10,
             frontend: 20,
