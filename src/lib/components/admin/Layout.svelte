@@ -38,6 +38,7 @@
 <style>
 	.Admin main{
 		margin-top: 10px;
+		margin-bottom: 30px;
 	}
 	.Admin main .wrapper{
 		display: grid;

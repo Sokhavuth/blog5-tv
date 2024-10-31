@@ -12,7 +12,7 @@
     <header class='wrapper region'>
         <div class='logo'>
             <a href='/'><img src='/images/siteLogo.png' alt='' /></a>
-            <a href='/'>{ data.settings.title }</a>
+            <a href='/'>{ data.settings.siteTitle }</a>
         </div>
         <form class='search' action="/search?/search" method="post">
             <select name='category'>
