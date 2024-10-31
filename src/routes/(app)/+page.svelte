@@ -7,6 +7,6 @@
 
 <Layout {data}>
 <section class="Index region">
-    
+    <h1>Hello</h1>
 </section>
 </Layout>
