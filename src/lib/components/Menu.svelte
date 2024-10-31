@@ -4,8 +4,10 @@ export let data
 let isresponsive = false
 
 let home = ''
-let national = ''
-let world = ''
+let news = ''
+let opinion = ''
+let doc = ''
+let sport = ''
 let movie = ''
 let travel = ''
 let contact = ''
@@ -44,8 +46,18 @@ function myFunction() {
         <div class="region">
             <div data-sveltekit-reload class="topnav" class:responsive={isresponsive} id="myTopnav">
                 <a href="/" class={`home ${home}`}>ទំព័រ​ដើម</a>
-                <a href="/national/1" class={`national ${national}`}>ក្នុង​ប្រទេស</a>
-                <a href="/world/1" class={`world ${world}`}>អន្តរជាតិ</a>
+                <div class={`dropdown ${news}`}>
+                  <button class={`dropbtn `}>ព័ត៌មាន
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="/national/1">ក្នុង​ប្រទេស</a>
+                    <a href="/global/1">ក្រៅ​ប្រទេស</a>
+                  </div>
+                </div>
+                <a href="/opinion/1" class={`opinion ${opinion}`}>មតិ​យោបល់</a>
+                <a href="/doc/1" class={`doc ${doc}`}>ឯកសារ</a>
+                <a href="/sport/1" class={`sport ${sport}`}>កីឡា</a>
                 <div class={`dropdown ${movie}`}>
                   <button class={`dropbtn `}>ភាពយន្ត
                     <i class="fa fa-caret-down"></i>
@@ -56,6 +68,7 @@ function myFunction() {
                     <a href="/Chinese/1">រឿង​ចិន</a>
                     <a href="/Korean/1">រឿង​កូរ៉េ</a>
                     <a href="/other/1">​រឿង​បរទេស</a>
+                    <a href="/random-movie/1">​ឥត​ព្រៀង​ទុក</a>
                   </div>
                 </div>
                 <a href="/travel/1" class={`travel ${travel}`}>ដើរ​លេង</a>

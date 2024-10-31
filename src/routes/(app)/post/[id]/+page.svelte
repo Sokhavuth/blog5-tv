@@ -1,21 +1,22 @@
 <script>    
     import Layout from "$lib/components/Layout.svelte"
     import Video from "$lib/components/Video.svelte"
-    import Ad from "$lib/components/Ad.svelte"
-    //import { FacebookLink } from "svelte-social-links"
     let { data } = $props()
     let post = $state(data.post)
     const Categories = {
+        news: 'ព័ត៌មាន',
+        national: 'ក្នុង​ប្រទេស',
+        global: "ក្រៅ​ប្រទេស",
+        opinion: "មតិយោបល់",
+        doc: "ឯកសារ",
+        sport: "កីឡា",
         movie: 'ភាពយន្ត',
         Khmer: 'រឿងខ្មែរ',
         Thai: 'រឿងថៃ',
         Chinese: 'រឿងចិន',
         Korean: 'រឿងកូរ៉េ',
-        other: 'រឿង​បរទេស',
-        doc: 'ឯកសារ',
+        world: 'រឿង​​បរទេស',
         travel: 'ដើរ​លេង',
-        national: 'ក្នុង​ប្រទេស',
-        world: 'អន្តរជាតិ',
         game: 'ពិភព​និម្មិត',
     }
 
@@ -38,7 +39,6 @@
 </script>
 
 <Layout {data}>
-<Ad />
 <section class="Post region">
     <div class="main">
         <h3 class="title">{post.title}</h3>
@@ -57,8 +57,7 @@
         </div>
         <div class='post-bottom'>
             <div class="social-media">
-                
-                <span class="fb-share-button" data-href={`https://khmerweb-news.netlify.app/post/${post.id}`} data-layout="" data-size=""><a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://khmerweb-news.netlify.app/post/${post.id}%2F&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">Share</a></span>
+                <span class="fb-share-button" data-href={`https://khmerweb-news.netlify.app/post/${post._id}`} data-layout="" data-size=""><a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://khmerweb-news.netlify.app/post/${post._id}%2F&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">Share</a></span>
             </div>
             {#if data.user}
             <div class='edit'>
@@ -72,7 +71,7 @@
     </div>
     <div class="sidebar">
         {#each data.randomPosts as post}
-            <a  href={`/post/${post.id}`}>
+            <a  href={`/post/${post._id.$oid}`}>
                 <img src={post.thumb} alt=''/>
                 {#if post.videos.length}
                 <img class="play-icon" src="/images/play.png" alt=''/>
@@ -93,7 +92,7 @@
     grid-gap: 15px;
 }
 .Post .main{
-    background-color: rgb(224, 220, 220);
+    background-color: rgb(231, 229, 229);
     color: rgb(22, 22, 22);
     padding: 15px;
 }

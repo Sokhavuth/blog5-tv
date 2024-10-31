@@ -17,12 +17,6 @@
         <form class='search' action="/search?/search" method="post">
             <select name='category'>
                 <option>ទាំងអស់</option>
-                <option>រឿងខ្មែរ</option>
-                <option>រឿងថៃ</option>
-                <option>រឿងចិន</option>
-                <option>រឿងកូរ៉េ</option>
-                <option>ដើរ​​លេង</option>
-                <option>ព័ត៌មាន</option>
             </select>
             <input type='text' name='q' placeholder='សរសេរ​ពាក្យ​ត្រូវ​ស្វែងរក...' required />
             <input type='submit' value='ស្វែងរក' /> 

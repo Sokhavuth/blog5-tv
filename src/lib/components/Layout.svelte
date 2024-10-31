@@ -2,11 +2,13 @@
     import Header from '$lib/components/Header.svelte'
     import Menu from "$lib/components/Menu.svelte"
     import Footer from "$lib/components/Footer.svelte"
-    export let data
+    import Ad from "$lib/components/Ad.svelte"
+    const {data, children} = $props()
 </script>
 
 <Header {data} />
 <Menu {data} />
+<Ad />
 <img style='display:none;' src={data.thumb} alt='' />
-<slot />
+{@render children(data)}
 <Footer />

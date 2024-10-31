@@ -36,12 +36,12 @@ class Post{
         let query
         if(req.body.category){
             query = [
-                { title: { contains: req.body.q } },
+                { title: { contains: req.body.q, mode: 'insensitive' } },
                 { categories: { contains: req.body.category } }
             ]
         }else{
             query = [
-                { title: { contains: req.body.q } }
+                { title: { contains: req.body.q, mode: 'insensitive' } }
             ]
         }
         
@@ -131,20 +131,31 @@ class Post{
     }
 
     async getRandomPosts(req, amount, post){
-        let results = ''
-        if(post.categories.includes('movie')){
-            results = await req.prisma.post.findManyRandom(amount,{
-                select: { id: true, videos: true, thumb: true, title: true },
-                where: {AND: [{ categories: { contains: 'movie' } }, {NOT: {id: post.id}}]},
-            })
+        let results
+        if(post.categories.includes('news')){
+            if(post.categories.includes('doc')){
+                results = await req.prisma.post.aggregateRaw({
+                    pipeline: [{ $match : { categories:{ $regex: "doc" }, _id: {$ne: {$oid: post.id}}}}, { $sample:{ size: amount }}]
+                })
+            }else{
+                results = await req.prisma.post.aggregateRaw({
+                    pipeline: [{ $match : { categories:{ $regex: "news" }, _id: {$ne: {$oid: post.id}}}}, { $sort: { date : -1 } }, { $limit: amount }]
+                })
+            }
         }else{
-            results = await req.prisma.post.findMany({
-                where: {AND: [{NOT: { categories: { contains: 'movie' } }}, {NOT: {id: post.id}}]},
-                orderBy: [{ date: "desc" }],
-                take: amount
+            results = await req.prisma.post.aggregateRaw({
+                pipeline: [{ $match : {categories : {$not:{ $regex: "news" }}, _id: {$ne: {$oid: post.id}}} }, { $sample:{ size: amount }}]
             })
         }
        
+        return results
+    }
+
+    async getRandomAll(req, amount){
+        const results = await req.prisma.post.aggregateRaw({
+            pipeline: [{ $match : { categories : { $regex: 'movie' } } }, { $sample:{ size: amount }}]
+        })
+
         return results
     }
 }
