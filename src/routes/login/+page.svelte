@@ -15,55 +15,55 @@ let {data} = $props()
 </section>
 
 <style>
-.Login{
-    width: 400px;
-    margin: 100px auto;
-    background: var(--background);
-} 
- 
-.Login .title{
-    text-align: center;
-    font: 18px/1.5 Koulen, Oswald;
-    padding: 5px;
-    border-bottom: 1px solid white;
-    color: white;
-}
- 
-.Login form{
-    padding: 20px 20px;
-    display: grid;
-    grid-template-columns: 20% auto; 
-    grid-gap: 5px;
-    align-items: center;
-}
- 
-.Login form span{
-    text-align: right;
-    color: white;
-}
- 
-.Login form input{
-    padding: 0 5px;
-    font: var(--body-font);
-}
- 
-.Login .info{
-    text-align: center;
-    color: white;
-}
- 
-.Login form input[type=submit]{
-    font: var(--body-font);
-    padding-top: 0;
-}
- 
-@media only screen and (max-width: 600px){
+    .Login{
+        width: 400px;
+        margin: 100px auto;
+        background: rgb(189,59,11);
+    } 
+     
+    .Login .title{
+        text-align: center;
+        font: 18px/1.5 Koulen, Oswald;
+        padding: 5px;
+        border-bottom: 1px solid white;
+        color: white;
+    }
+     
     .Login form{
-        grid-template-columns: 100%; 
+        padding: 20px 20px;
+        display: grid;
+        grid-template-columns: 20% auto; 
+        grid-gap: 5px;
+        align-items: center;
     }
- 
+     
     .Login form span{
-        text-align: left;
+        text-align: right;
+        color: white;
     }
-}
+     
+    .Login form input{
+        padding: 0 5px;
+        font: var(--body-font);
+    }
+     
+    .Login .info{
+        text-align: center;
+        color: white;
+    }
+     
+    .Login form input[type=submit]{
+        font: var(--body-font);
+        padding-top: 0;
+    }
+     
+    @media only screen and (max-width: 600px){
+        .Login form{
+            grid-template-columns: 100%; 
+        }
+     
+        .Login form span{
+            text-align: left;
+        }
+    }
 </style>
