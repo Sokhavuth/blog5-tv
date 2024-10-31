@@ -46,7 +46,7 @@
         </div>
         <div class='post-bottom'>
             <div class="social-media">
-                <span class="fb-share-button" data-href={`https://khmerweb-news.netlify.app/post/${post.id}`} data-layout="" data-size=""><a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://khmerweb-news.netlify.app/post/${post.id}%2F&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">Share</a></span>
+                <span class="fb-share-button" data-href={`https://khmerweb-tv.netlify.app/post/${post.id}`} data-layout="" data-size=""><a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=https://khmerweb-tv.netlify.app/post/${post.id}%2F&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">Share</a></span>
             </div>
             {#if data.user}
             <div class='edit'>
@@ -55,7 +55,7 @@
             </div>
             {/if}
         </div>
-        <div class="fb-comments" data-href={`https://khmerweb-news.netlify.app/post/${post.id}`} data-width="100%" data-numposts="5"></div>
+        <div class="fb-comments" data-href={`https://khmerweb-tv.netlify.app/post/${post.id}`} data-width="100%" data-numposts="5"></div>
     </div>
     <div class="sidebar">
         {#each data.randomPosts as post}
