@@ -55,7 +55,7 @@
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4 - 11.25px));
     grid-gap: 30px 15px;
-    padding: 10px 0 30px;
+    padding: 15px 0 30px;
 }
 .Category .container .wrapper a{
     position: relative;
