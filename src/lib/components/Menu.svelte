@@ -48,7 +48,7 @@ function myFunction() {
     <nav class="nav">
         <div class='logo'>
           <a href='/'><img src='/images/siteLogo.png' alt='' /></a>
-          <form class='search' action="/search" method="post">
+          <form class='search' action="/search?/search" method="post">
               <div class="search-bar">
                   <i class="icon fa fa-search"></i>
                   <input class="input-text" type="text" name="q" placeholder="Search..." />
@@ -105,6 +105,9 @@ nav{
     display: grid;
     grid-template-columns: 25% auto 10%;
     align-items: center;
+}
+nav .region2{
+  margin: 0;
 }
 .logo{
   display: grid;

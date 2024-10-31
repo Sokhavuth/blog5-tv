@@ -1,10 +1,12 @@
 <script>
     import Layout from "$lib/components/Layout.svelte"
+    import Ad from "$lib/components/Ad.svelte"
     let { data } = $props()
 </script>
 
 <Layout {data} >
-<section class="Category region">
+<Ad />
+<section class="Category region2">
     <div class="container">
         {#each data.posts as post}
             <div class="wrapper">
@@ -81,7 +83,7 @@
 }
 .Category .container .wrapper .title{
     padding-top: 0;
-    color: black;
+    color: var(--background-light);
 }
 .Category .pagination{
     display: block;

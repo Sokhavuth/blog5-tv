@@ -1,10 +1,12 @@
 <script>
     import Layout from "$lib/components/Layout.svelte"
+    import Ad from "$lib/components/Ad.svelte"
     let { data } = $props()
 </script>
 
 <Layout {data}>
-<section class="Category region">
+<Ad />
+<section class="Category region2">
     <div class="container">
         {#each data.posts as item}
             <div class="wrapper">
@@ -27,7 +29,7 @@
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4 - 11.25px));
     grid-gap: 30px 15px;
-    padding: 10px 0 30px;
+    padding: 15px 0 30px;
 }
 .Category .container .wrapper a{
     position: relative;
@@ -53,7 +55,7 @@
 }
 .Category .container .wrapper .title{
     padding-top: 0;
-    color: black;
+    color: var(--background-light);
 }
 
 @media only screen and (max-width:600px){

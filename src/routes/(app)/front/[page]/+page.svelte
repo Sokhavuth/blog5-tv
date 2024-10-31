@@ -1,11 +1,13 @@
 <!--src/components/Pagination.astro-->
 <script>
     import Layout from "$lib/components/Layout.svelte"
+    import Ad from "$lib/components/Ad.svelte"
     let { data } = $props()
 </script>
 
 <Layout {data}>
-<section class="Home region">
+<Ad />
+<section class="Home region2">
     <div class="container">
         {#each data.posts as post}
             <div class="wrapper">
@@ -24,7 +26,7 @@
     </div>
     <div class="pagination">
         <span>ទំព័រ </span>
-        <select onchange={(event)=>{document.location = `/${event.target.value}`}}>
+        <select onchange={(event)=>{document.location = `/front/${event.target.value}`}}>
             {#each [...Array(data.lastPage).keys()] as pageNumber}
                 {#if pageNumber+1 == data.currentPage}
                 <option selected>{pageNumber+1}</option>
@@ -43,7 +45,7 @@
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4 - 11.25px));
     grid-gap: 30px 15px;
-    padding: 10px 0 30px;
+    padding: 15px 0 30px;
 }
 .Home .container .wrapper a{
     position: relative;
@@ -69,7 +71,7 @@
 }
 .Home .container .wrapper .title{
     padding-top: 0;
-    color: black;
+    color: var(--background-light);
 }
 .Home .pagination{
     display: block;

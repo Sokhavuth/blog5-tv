@@ -1,11 +1,13 @@
 <script>    
     import Layout from "$lib/components/Layout.svelte"
+    import Ad from "$lib/components/Ad.svelte"
     let { data } = $props()
     let page = data.page
 </script>
 
 <Layout {data}>
-<section class="Post region">
+<Ad />
+<section class="Post region2">
     <div class="main">
         <h3 class="title">{page.title}</h3>
         <div class="content">
@@ -36,7 +38,7 @@
     grid-gap: 15px;
 }
 .Post .main{
-    background-color: #e2f3a6;
+    background-color: var(--background-light);
     color: rgb(22, 22, 22);
     padding: 15px;
 }

@@ -1,5 +1,6 @@
 <script>    
     import Layout from "$lib/components/Layout.svelte"
+    import Ad from "$lib/components/Ad.svelte"
     import Video from "$lib/components/Video.svelte"
     let { data } = $props()
     let post = $state(data.post)
@@ -26,7 +27,8 @@
 </script>
 
 <Layout {data}>
-<section class="Post region">
+<Ad />
+<section class="Post region2">
     <div class="main">
         <h3 class="title">{post.title}</h3>
         <div class="categories">
@@ -79,7 +81,7 @@
     padding-bottom: 30px;
 }
 .Post .main{
-    background-color: #e2f3a6;
+    background-color: var(--background-light);
     color: rgb(22, 22, 22);
     padding: 15px;
 }

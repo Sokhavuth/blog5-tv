@@ -1,4 +1,4 @@
-<section class="Ad region">
+<section class="Ad region2">
     <img src="/images/ad.jpg" alt=''/>
     <img src="/images/ad.jpg" alt=''/>
 </section>
