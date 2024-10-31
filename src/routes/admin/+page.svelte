@@ -63,10 +63,6 @@
 		white-space: nowrap;
         overflow: hidden;
     	text-overflow: ellipsis;
-		color: lightgrey;
-	}
-	.editor .item .title a{
-		color: white;
 	}
 
 	@media only screen and (max-width: 600px){

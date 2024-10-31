@@ -70,7 +70,7 @@
 		text-align: center;
 		margin-top: 10px;
 		padding: 5px;
-		color: white;
+		color: black;
 	}
 	footer .items{
 		display: grid;
@@ -113,10 +113,7 @@
 		white-space: nowrap;
         overflow: hidden;
     	text-overflow: ellipsis;
-		color: lightgrey;
-	}
-	footer .items .item .title a{
-		color: white;
+		
 	}
 	footer .items .item .edit{
     	text-align: right;
@@ -142,7 +139,6 @@
 	}
 	footer .flash{
         text-align: center;
-        color: white;
         padding: 5px;
 		margin-top: 10px;
     }
