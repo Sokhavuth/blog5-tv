@@ -10,7 +10,7 @@ const config = {
 		adapter: adapter({
 			// if true, will create a Netlify Edge Function rather
 			// than using standard Node-based functions
-			edge: true
+			edge: false
 		})
 	}
 };
