@@ -1,18 +1,18 @@
 <!--src/layouts/Menu.astro-->
 <script>
-export let data
-let isresponsive = false
+let { data } = $props()
+let isresponsive = $state(false)
 
-let home = ''
-let news = ''
-let opinion = ''
-let doc = ''
-let sport = ''
-let movie = ''
-let travel = ''
-let contact = ''
-let about = ''
-let game = ''
+let home = $state('')
+let news = $state('')
+let opinion = $state('')
+let doc = $state('')
+let sport = $state('')
+let movie = $state('')
+let travel = $state('')
+let contact = $state('')
+let about = $state('')
+let game = $state('')
 
 if(data.pageURL === '/'){
     home = 'active'
@@ -44,9 +44,18 @@ function myFunction() {
 </script>
 
 <section class='menu'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <nav class="nav">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div class="region">
+        <div class='logo'>
+          <a href='/'><img src='/images/siteLogo.png' alt='' /></a>
+          <form class='search' action="/search" method="post">
+              <div class="search-bar">
+                  <i class="icon fa fa-search"></i>
+                  <input class="input-text" type="text" name="q" placeholder="Search..." />
+              </div>
+          </form>
+        </div>
+        <div class="region2">
             <div data-sveltekit-reload class="topnav" class:responsive={isresponsive} id="myTopnav">
                 <a href="/" class={`home ${home}`}>ទំព័រ​ដើម</a>
                 <div class={`dropdown ${news}`}>
@@ -77,11 +86,13 @@ function myFunction() {
                 <a href="/travel/1" class={`travel ${travel}`}>ដើរ​លេង</a>
                 <a href="/game/1" class={`game ${game}`}>ពិភព​និមិ្មត</a>
                 <a href="/page/66b17b1e944f187d47506cda" class={`contact ${contact}`}>ទំនាក់ទំនង</a>
-                <a href="/page/66b17b48944f187d47506cdc" class={`about ${about}`}>អំពីយើង​ខ្ញុំ</a>
-                <a href="javascript:void(0);" class="icon" on:click={myFunction}>
+                <a href="javascript:void(0);" class="icon" onclick={myFunction}>
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
+        </div>
+        <div class='login'>
+          <a href="/admin">ចូល​ក្នុង</a> | <a href="/admin/user">ចុះ​ឈ្មោះ</a>
         </div>
     </nav>   
 </section>
@@ -89,6 +100,43 @@ function myFunction() {
 <style>
 nav{
     background-color: var(--menu);
+    max-width: 1920px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 25% auto 10%;
+    align-items: center;
+}
+.logo{
+  display: grid;
+  grid-template-columns: 45px auto;
+  align-items: center;
+}
+.logo img{
+  width: 40px;
+}
+.logo .search-bar{
+    position: relative;
+}
+.search-bar .icon {
+  cursor: pointer;
+  position: absolute;
+  top: 47%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 13px 15px 13px 5px;
+}
+.logo input{
+    background: var(--background);
+    outline-color: none;
+    border:none;
+    height:35px;
+    padding: 2px 10px 2px 25px;
+    border-radius: 30px;
+    color: var(--background-light)
+}
+
+.login{
+  text-align: right;
 }
 .topnav {
     background-color: var(--menu);
@@ -97,18 +145,18 @@ nav{
   .topnav a {
     float: left;
     display: block;
-    color: white;
+    color: var(--background-light);
     text-align: center;
-    padding: 9px 16px;
+    padding: 14px 16px;
     text-decoration: none;
     font-size: 14px;
   }
   .topnav a:hover {
-    background-color: var(--background-dark);
+    background-color: #292929;
     color: white;
   }
   .topnav a.active, div.active {
-    background-color: var(--background-dark);
+    background-color: #292929;
     color: white;
   }
   .topnav .icon {
@@ -122,8 +170,8 @@ nav{
   font-size: 14px;
   border: none;
   outline: none;
-  color: white;
-  padding: 7px 16px;
+  color: var(--background-light);
+  padding: 12px 16px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
@@ -184,6 +232,16 @@ nav{
     display: block;
     width: 100%;
     text-align: left;
+  }
+  nav{
+    grid-template-columns: 100%;
+  }
+  .menu-wrapper{
+    padding-top: 15px;
+  }
+  nav .login{
+    text-align: center;
+    padding: 10px 0;
   }
 }
 </style>
