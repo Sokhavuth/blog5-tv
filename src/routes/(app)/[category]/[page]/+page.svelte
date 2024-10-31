@@ -8,6 +8,18 @@
     <div class="container">
         {#each data.posts as post}
             <div class="wrapper">
+                {#if data.category === "movie"}
+                <a href={`/post/${post._id.$oid}`}>
+                    <img src={post.thumb} alt=''/>
+                    {#if post.videos.length}
+                    <img class="play-icon" src="/images/play.png" alt=''/>
+                    {/if}
+                </a>
+                <div class="date">{(new Date(post.date)).toLocaleDateString('it-IT')}</div>
+                <a class="title" href={`/post/${post._id.$oid}`}>
+                    <div >{post.title}</div>
+                </a>
+                {:else}
                 <a href={`/post/${post.id}`}>
                     <img src={post.thumb} alt=''/>
                     {#if post.videos.length}
@@ -18,6 +30,7 @@
                 <a class="title" href={`/post/${post.id}`}>
                     <div >{post.title}</div>
                 </a>
+                {/if}
             </div>
         {/each}
     </div>
