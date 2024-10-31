@@ -23,19 +23,6 @@
     let postCategories = $state(data.post.categories.split(","))
     let categories = $state(postCategories.map((category)=>Categories[category.trim()]))
 
-    $effect(() => { 
-        var disqus_config = function () {
-            this.page.url = `https://khmerweb-news.netlify.app/post/${post.id}`;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = `${post.id}`; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-    
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://khmerweb-live.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    })
 </script>
 
 <Layout {data}>
@@ -66,8 +53,7 @@
             </div>
             {/if}
         </div>
-        <div id="disqus_thread"></div>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <div class="fb-comments" data-href={`https://khmerweb-news.netlify.app/post/${post.id}`} data-width="100%" data-numposts="5"></div>
     </div>
     <div class="sidebar">
         {#each data.randomPosts as post}
