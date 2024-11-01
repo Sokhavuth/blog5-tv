@@ -141,7 +141,7 @@
         text-align: center;
         padding: 5px;
 		margin-top: 10px;
-		color: black;
+		color: white;
     }
 
     @media only screen and (max-width: 600px){
