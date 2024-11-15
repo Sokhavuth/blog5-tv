@@ -123,7 +123,7 @@
                                 <img src="/images/siteLogo.png" alt=''/>
                             </div>
                             <div class="play-all">
-                                <a onclick={()=>{changeCategory(latestVideos, 'វីដេអូ​ចុងក្រោយ')}}>លេង​វីដេអូ​ចុង​ក្រោយ</a>
+                                <span onclick={()=>{changeCategory(latestVideos, 'វីដេអូ​ចុងក្រោយ')}}>លេង​វីដេអូ​ចុង​ក្រោយ</span>
                             </div>
                     </div>
                     <div class="channel">
@@ -237,7 +237,7 @@
     text-align: center;
     visibility: hidden;
 }
-.latest #monitorscreen .play-all a{
+.latest #monitorscreen .play-all span{
     color: orange;
 }
 .latest #monitorscreen .play-all:hover{
